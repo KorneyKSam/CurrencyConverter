@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="CurrencyConverter.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CurrencyConverter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#1E1E1E">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:ConnectionId='8' x:Name="burgerButton" 
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="30"
+                    Content="&#xE700;" 
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch" 
+                    Grid.Column="0"
+                    Foreground="White"
+                    Background="{x:Null}"
+                                              />
+            <TextBlock x:ConnectionId='9' x:Name="title" 
+                       Text="Конвертер валют" 
+                       Grid.Column="1" 
+                       Style="{StaticResource TitleTextBlockStyle}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <SplitView x:ConnectionId='2' x:Name ="SplitView" Grid.Column="0" Grid.Row="1" CompactPaneLength="100" OpenPaneLength="350" DisplayMode="CompactOverlay">
+                <SplitView.Pane>
+                    <ListBox x:ConnectionId='3' Name="ListBox" Background="DimGray"                                            >
+                        <ListBoxItem x:ConnectionId='4' Name="ItemOpenFile" Height="70">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE8E5;"/>
+                                <TextBlock Style="{StaticResource WhiteText}" Text="Открыть файл"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem x:ConnectionId='5' Name="ItemSaveFile" Height="70">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE74E;"/>
+                                <TextBlock Style="{StaticResource WhiteText}" Text="Сохранить файл"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem x:ConnectionId='6' Name="ItemCalculator" Height="70">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE8EF;"/>
+                                <TextBlock Style="{StaticResource WhiteText}" Text="Калькулятор валют"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </SplitView.Pane>
+                <SplitView.Content>
+                    <Frame x:ConnectionId='7' x:Name="Frame"/>
+                </SplitView.Content>
+            </SplitView>
+            
+        </Grid>
+    </Grid>
+</Page>
+

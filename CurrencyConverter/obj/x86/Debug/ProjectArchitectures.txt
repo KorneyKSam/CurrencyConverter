@@ -1,0 +1,1 @@
+D:\GitHub\CurrencyConverter\CurrencyConverter\CurrencyConverter.csproj;x86
