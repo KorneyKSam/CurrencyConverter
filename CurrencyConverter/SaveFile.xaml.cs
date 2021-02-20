@@ -26,5 +26,11 @@ namespace CurrencyConverter
         {
             this.InitializeComponent();
         }
+
+        private void ButtonJsonSave_Click(object sender, RoutedEventArgs e)
+        {
+            //_currency.SaveJsonFile(Directory.GetCurrentDirectory() + "\\" + "daily_json.js");
+            //MainPage.SaveJsonFile(@"D:\\daily_json.txt");
+        }
     }
 }

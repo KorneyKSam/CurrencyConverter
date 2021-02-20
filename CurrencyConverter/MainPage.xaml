@@ -39,19 +39,19 @@
                         <ListBoxItem Name="ItemOpenFile" Height="70">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE8E5;"/>
-                                <TextBlock Style="{StaticResource WhiteText}" Text="Открыть файл"/>
+                                <TextBlock Style="{StaticResource WhiteTextBlockStyle}" Text="Открыть файл"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem Name="ItemSaveFile" Height="70">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE74E;"/>
-                                <TextBlock Style="{StaticResource WhiteText}" Text="Сохранить файл"/>
+                                <TextBlock Style="{StaticResource WhiteTextBlockStyle}" Text="Сохранить файл"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem Name="ItemCalculator" Height="70">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE8EF;"/>
-                                <TextBlock Style="{StaticResource WhiteText}" Text="Калькулятор валют"/>
+                                <TextBlock Style="{StaticResource WhiteTextBlockStyle}" Text="Калькулятор валют"/>
                             </StackPanel>
                         </ListBoxItem>
                     </ListBox>

@@ -22,22 +22,33 @@ namespace CurrencyConverter
     /// </summary>
     public sealed partial class OpenFile : Page
     {
-        public Currency _currency = new Currency();
+
         public OpenFile()
         {
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonOpenFile_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                _currency.OpenJsonFile();
-            }
-            catch (Exception exception)
-            {
-                //ExceptionTextBlock.Text = $"Ошибка, {exception.Message}";
-            }
+
+            //string path = Directory.GetCurrentDirectory();
+            //StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(path);
+            //await Launcher.LaunchFolderAsync(folder);
+
+
+            //try
+            //{
+            //    MainPage.OpenJsonFile();
+            //}
+            //catch (Exception exception)
+            //{
+            //    ExceptionTextBlock.Text = $"Ошибка, {exception.Message}";
+            //}
+        }
+
+        private void ButtonOpenLink_Click(object sender, RoutedEventArgs e)
+        {
+            //MainPage.OpenJsonLink();
         }
     }
 }

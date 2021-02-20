@@ -13,6 +13,7 @@
             <RowDefinition Height="150"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0">
             <TextBlock Text="Открыть файл" Style="{StaticResource TitleTextBlockStyle}"/>
         </Grid>
@@ -21,11 +22,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Файл" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}" Click="Button_Click">
+            <Button Content="Файл" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}" Click="ButtonOpenFile_Click">
                 
             </Button>
-            <Button Content="Ссылка" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}">
-
+            <Button Content="Ссылка" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="ButtonOpenLink_Click">
             </Button>
         </Grid>
     </Grid>

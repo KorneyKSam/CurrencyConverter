@@ -73,8 +73,8 @@
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\Calculator.xbf">
-      <PackagePath>Calculator.xbf</PackagePath>
+    <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\CalculatorPage.xbf">
+      <PackagePath>CalculatorPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>

@@ -21,6 +21,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Button Content="Сохранить как JSON" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}" Click="ButtonJsonSave_Click">
+
+            </Button>
+            <Button Content="Сохранить как таблицу" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}">
+            </Button>
         </Grid>
     </Grid>
 </Page>

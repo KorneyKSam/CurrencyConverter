@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CurrencyConverter
 {
 
-    public class Rootobject
+    public class CurrencyModel
     {
         public DateTime Date { get; set; }
         public DateTime PreviousDate { get; set; }
@@ -24,8 +24,8 @@ namespace CurrencyConverter
         public string CharCode { get; set; }
         public int Nominal { get; set; }
         public string Name { get; set; }
-        public float Value { get; set; }
-        public float Previous { get; set; }
+        public double Value { get; set; }
+        public double Previous { get; set; }
     }
 
 }

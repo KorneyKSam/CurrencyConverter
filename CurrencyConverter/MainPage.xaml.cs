@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using CurrencyConverter.CustomExceptions;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Input;
 using Windows.Foundation;
@@ -25,11 +27,14 @@ namespace CurrencyConverter
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public CurrencyModel _currencyModel;
 
         public MainPage()
         {
             this.InitializeComponent();
-            Frame.Navigate(typeof(Calculator));
+            ConvertJsonLink();
+            CalculatorPage._currencyModel = _currencyModel;
+            Frame.Navigate(typeof(CalculatorPage));          
         }
 
         private void burgerButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +46,53 @@ namespace CurrencyConverter
         {
             if (ItemOpenFile.IsSelected) Frame.Navigate(typeof(OpenFile));
             if (ItemSaveFile.IsSelected) Frame.Navigate(typeof(SaveFile));
-            if (ItemCalculator.IsSelected) Frame.Navigate(typeof(Calculator));
+            if (ItemCalculator.IsSelected) Frame.Navigate(typeof(CalculatorPage));
         }
+
+
+
+        public CurrencyModel ConvertJsonFile(string directory = "daily_json.js")
+        {
+            CurrencyModel currencyModel = new CurrencyModel();
+            if (File.Exists(directory))
+                currencyModel = JsonConvert.DeserializeObject<CurrencyModel>(File.ReadAllText(directory));
+            else throw new FileJsonNotFound();
+            return currencyModel;
+        }
+
+        public void ConvertJsonLink(string link = "https://www.cbr-xml-daily.ru/daily_json.js")
+        {
+            //CurrencyModel currencyModel = new CurrencyModel();
+            string json = new WebClient().DownloadString(link);
+            _currencyModel = JsonConvert.DeserializeObject<CurrencyModel>(json);
+            //return currencyModel;
+        }
+
+        public string SaveToJsonFile(CurrencyModel currencyModel, string path)
+        {
+            string saveMessage;
+            //try
+            //{
+            //    using (FileStream fs = File.Create(path))
+            //    {
+            //        byte[] info = new UTF8Encoding(true).GetBytes("Текст одинаковый");
+            //        fs.Write(info, 0, info.Length);
+            //    }
+            //}
+            //catch (Exception exception)
+            //{
+            //    return exception.Message;
+            //}
+
+            //FileStream fs = new FileStream(path, FileMode.Create);
+
+            //File.Create(path);
+            File.WriteAllText("daily_json.js", JsonConvert.SerializeObject(_currencyModel));
+
+            saveMessage = "successfully";
+            return saveMessage;
+        }
+
+
     }
 }

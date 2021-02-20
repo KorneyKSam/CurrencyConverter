@@ -13,6 +13,7 @@
             <RowDefinition Height="150"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0">
             <TextBlock Text="Открыть файл" Style="{StaticResource TitleTextBlockStyle}"/>
         </Grid>
@@ -21,11 +22,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="1" Grid.Column="0">
+            <Button x:ConnectionId='2' Content="Файл" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}"                             >
                 
             </Button>
-            <Button Grid.Row="1" Grid.Column="1">
-
+            <Button x:ConnectionId='3' Content="Ссылка" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}"                             >
             </Button>
         </Grid>
     </Grid>
