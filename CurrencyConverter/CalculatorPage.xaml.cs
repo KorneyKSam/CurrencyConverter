@@ -1,97 +1,88 @@
-﻿using CurrencyConverter.CustomExceptions;
-using CurrencyConverter.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 
 namespace CurrencyConverter
 {
     public sealed partial class CalculatorPage : Page
     {
-        static public CurrencyModel _currencyModel;
+        static public Currency _currency;
         private Calculator _calculator;
         public List<string> CurrencyList { get; private set; }
 
         public CalculatorPage()
         {
             this.InitializeComponent();
-            _calculator = new Calculator(_currencyModel);
-            _calculator.SetBaseCurrency("RU", "Рубль");
-            CurrencyList = GetCurrencyList();
+            _calculator = new Calculator();
+            CurrencyList = _currency.GetCurrencyList();
             //btnChangeValute2.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 90, 99, 195));
         }
 
-        private List<string> GetCurrencyList()
-        {
-            List<string> list = new List<string>();
-            foreach (var item in _currencyModel.Valute.Keys)
-            {
-                list.Add($"{_currencyModel.Valute.GetValueOrDefault(item).Name} ({_currencyModel.Valute.GetValueOrDefault(item).CharCode})");
-            }
-            return list;
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TextBox2.IsHitTestVisible = false;
-            double firstValue = TextBox1.Text != String.Empty ? Convert.ToSingle(TextBox1.Text) : 0;
-            double secondValue = TextBox2.Text != String.Empty ? Convert.ToSingle(TextBox2.Text) : 0;
-            var pattern = @"(?<=\().+?(?=\))";
-            string firstCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo1.SelectedValue), pattern));
-            string secondCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo2.SelectedValue), pattern));
-            TextBox2.Text = _calculator.Calculate(firstCurrency, secondCurrency, firstValue, secondValue);
+            string firstCurrency = SelectContentOfBrackets(Convert.ToString(CurrencyCombo1.SelectedValue));
+            int nominal = _currency.GetNominal(firstCurrency);
+            float rate = _currency.GetRate(firstCurrency);
+            double value = _calculator.CalculateFirstCurrency(nominal, rate);
+            TextBox2.Text = Convert.ToString(Math.Round(_calculator.CalculateFirstCurrency(nominal, rate), 6));
             TextBox2.IsHitTestVisible = true;
         }
+
+        private void ComboBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TextBox2.IsHitTestVisible = false;
+            string secondCurrency = SelectContentOfBrackets(Convert.ToString(CurrencyCombo2.SelectedValue));
+            int nominal = _currency.GetNominal(secondCurrency);
+            float rate = _currency.GetRate(secondCurrency);
+            TextBox2.Text = Convert.ToString(Math.Round(_calculator.CalculateSecondCurrency(nominal, rate), 6));
+            TextBox2.IsHitTestVisible = true;
+        }
+
         private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox2.IsHitTestVisible = false;
-            double firstValue = TextBox1.Text != String.Empty ? Convert.ToSingle(TextBox1.Text) : 0;
-            double secondValue = TextBox2.Text != String.Empty ? Convert.ToSingle(TextBox2.Text) : 0;
-            var pattern = @"(?<=\().+?(?=\))";
-            string firstCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo1.SelectedValue), pattern));
-            string secondCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo2.SelectedValue), pattern));
-            TextBox2.Text = _calculator.Calculate(firstCurrency, secondCurrency, firstValue, secondValue);
+            double firstValue = SetZeroIfEmpty(TextBox1.Text);
+            TextBox2.Text = Convert.ToString(Math.Round(_calculator.CalculateFirstCurrency(firstValue), 6));
             TextBox2.IsHitTestVisible = true;
         }
 
         private void TextBox2_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox1.IsHitTestVisible = false;
-            double firstValue = TextBox1.Text != String.Empty ? Convert.ToSingle(TextBox1.Text) : 0;
-            double secondValue = TextBox2.Text != String.Empty ? Convert.ToSingle(TextBox2.Text) : 0;
-            var pattern = @"(?<=\().+?(?=\))";
-            string firstCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo1.SelectedValue), pattern));
-            string secondCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo2.SelectedValue), pattern));
-            TextBox1.Text = _calculator.CalculateLeftTextBox(firstCurrency, secondCurrency, firstValue, secondValue);
+            double secondValue = SetZeroIfEmpty(TextBox2.Text);
+            TextBox1.Text = Convert.ToString(Math.Round(_calculator.CalculateSecondCurrency(secondValue), 6));
             TextBox1.IsHitTestVisible = true;
         }
 
-        //private void ComboBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    TextBox1.IsHitTestVisible = false;
-        //    TextBox1.Text = _calculator.CalculateSecondCurrency(Convert.ToString(CurrencyCombo2.SelectedValue));
-        //    TextBox1.IsHitTestVisible = true;
-        //}
+        private string SelectContentOfBrackets(string content, string pattern = @"(?<=\().+?(?=\))")
+        {
+            return Convert.ToString(Regex.Match(content, pattern, RegexOptions.RightToLeft));
+        }
 
+        private double SetZeroIfEmpty(string number)
+        {
+            try
+            {
+                return Convert.ToDouble(number != String.Empty ? Convert.ToDouble(number) : 0);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
 
+        private void TextBoxes_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
 
-        //private void TextBoxes_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
-        //{
-        //    args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
-        //    args.Cancel = args.NewText.Any(c => !Char.IsNumber(c)); 
-        //}
+        private string DeleteAllLetters(string number)
+        {
+            return Convert.ToString(number.Where(char.IsDigit).ToArray());
+        }
     }
 }

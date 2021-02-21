@@ -1,155 +1,79 @@
-﻿using CurrencyConverter.CustomExceptions;
-using CurrencyConverter.Models;
-using Newtonsoft.Json;
+﻿using CurrencyConverter.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CurrencyConverter
 {
     public class Calculator
     {
-        private CurrencyModel _currencyModel;
-        public string BaseCurrency { get; private set; }
-        public double FirstValue { get; private set; }
-        public double SecondValue { get; private set; }
-        public string FirstCurrency { get; private set; }
-        public string SecondCurrency { get; private set; }
-        private double _firstRate;
-        private double _secondRate;
-        private double _firstMultiplicity;
-        private double _secondMultiplicity;
+        public CalculatorModel FirstCurrency { get; set; }
+        public CalculatorModel SecondCurrency { get; set; }
 
-        public Calculator(CurrencyModel currencyModel)
+        public Calculator()
         {
-            _currencyModel = currencyModel;
+            FirstCurrency = new CalculatorModel();
+            SecondCurrency = new CalculatorModel();
         }
 
-        public void SetBaseCurrency(string baseCurrency, string nameBaseCurrency)
-        {
-            BaseCurrency = baseCurrency;
-            var valute = new Valute()
-            {
-                CharCode = BaseCurrency,
-                ID = "R00000",
-                Name = nameBaseCurrency,
-                Nominal = 1,
-                NumCode = 0,
-                Previous = 1,
-                Value = 1
-            };
-            _currencyModel.Valute.Add(BaseCurrency, valute);
-        }
-
-        public string Calculate(string firstCurrency, string secondCurrency, double firstValue, double secondValue)
+        public double CalculateFirstCurrency(int nominal, float rate)
         {
             double value = 0;
             try
             {
-                double secondRate = _currencyModel.Valute.GetValueOrDefault(firstCurrency).Value;
-                double secondMultiplicity = _currencyModel.Valute.GetValueOrDefault(firstCurrency).Nominal;
-                double firstRate = _currencyModel.Valute.GetValueOrDefault(secondCurrency).Value;
-                double firstMultiplicity = _currencyModel.Valute.GetValueOrDefault(secondCurrency).Nominal;
-
-
-
-                value = (firstValue * firstMultiplicity * secondRate) / (secondMultiplicity * firstRate);
-                //value = (secondValue * secondMultiplicity * firstRate) / (firstMultiplicity * secondRate);
-
+                SecondCurrency.Nominal = nominal;
+                SecondCurrency.Rate = rate;
+                value = (FirstCurrency.Amount * FirstCurrency.Nominal * SecondCurrency.Rate) / (SecondCurrency.Nominal * FirstCurrency.Rate);
             }
             catch (Exception)
             {
 
             }
-            return Convert.ToString(value);
+            return value;
         }
 
-        public string CalculateLeftTextBox(string firstCurrency, string secondCurrency, double firstValue, double secondValue)
+        public double CalculateFirstCurrency(double firstCurrencyAmount)
         {
             double value = 0;
             try
             {
-                double secondRate = _currencyModel.Valute.GetValueOrDefault(firstCurrency).Value;
-                double secondMultiplicity = _currencyModel.Valute.GetValueOrDefault(firstCurrency).Nominal;
-                double firstRate = _currencyModel.Valute.GetValueOrDefault(secondCurrency).Value;
-                double firstMultiplicity = _currencyModel.Valute.GetValueOrDefault(secondCurrency).Nominal;
-
-                //value = (firstValue * firstMultiplicity * secondRate) / (secondMultiplicity * firstRate);
-                value = (secondValue * secondMultiplicity * firstRate) / (firstMultiplicity * secondRate);
-
+                FirstCurrency.Amount = firstCurrencyAmount;
+                value = (FirstCurrency.Amount * FirstCurrency.Nominal * SecondCurrency.Rate) / (SecondCurrency.Nominal * FirstCurrency.Rate);
             }
             catch (Exception)
             {
 
             }
-            return Convert.ToString(value);
+            return value;
         }
 
-
-        private void ChangeFirstCurrencyValues()
-        {
-            _firstRate = _currencyModel.Valute.GetValueOrDefault(FirstCurrency).Value;
-            _firstMultiplicity = _currencyModel.Valute.GetValueOrDefault(FirstCurrency).Nominal;
-        }
-
-
-        public string Calculate(string currencyName)
+        public double CalculateSecondCurrency(int nominal, float rate)
         {
             double value = 0;
-            if (currencyName == FirstCurrency)
+            try
             {
-                value = (FirstValue * _firstMultiplicity * _secondRate) / (_secondMultiplicity * _firstRate);
+                FirstCurrency.Nominal = nominal;
+                FirstCurrency.Rate = rate;
+                value = (FirstCurrency.Amount * FirstCurrency.Nominal * SecondCurrency.Rate) / (SecondCurrency.Nominal * FirstCurrency.Rate);
             }
-            else if (currencyName == SecondCurrency)
+            catch (Exception)
             {
-                value = (SecondValue * _secondMultiplicity * _firstRate) / (_firstMultiplicity * _secondRate);
+
             }
-            //else
-            //{
-            //    throw new Exception("WTF");
-            //}
-            return Convert.ToString(value);
+            return value;
         }
 
-
-
-        public string CalculateSecondCurrency(float secondValue)
+        public double CalculateSecondCurrency(double secondCurrencyAmount)
         {
-            SecondValue = secondValue;
-            ChangeSecondCurrencyValues();
-            return Calculate(SecondCurrency);
+            double value = 0;
+            try
+            {
+                SecondCurrency.Amount = secondCurrencyAmount;
+                value = (SecondCurrency.Amount * SecondCurrency.Nominal * FirstCurrency.Rate) / (FirstCurrency.Nominal * SecondCurrency.Rate);
+            }
+            catch (Exception)
+            {
+
+            }
+            return value;
         }
-
-
-        private void ChangeSecondCurrencyValues()
-        {
-            _secondRate = _currencyModel.Valute.GetValueOrDefault(SecondCurrency).Value;
-            _secondMultiplicity = _currencyModel.Valute.GetValueOrDefault(SecondCurrency).Nominal;
-        }
-
-        public string CalculateFirstCurrency(float firstValue)
-        {
-            FirstValue = firstValue;
-            ChangeFirstCurrencyValues();
-            return Calculate(FirstCurrency);
-        }
-
-        public string CalculateFirstCurrency(string firstCurrency)
-        {
-            FirstCurrency = firstCurrency;
-            ChangeFirstCurrencyValues();
-            return Calculate(FirstCurrency);
-        }
-
-
-
-
-
-
     }
 }
