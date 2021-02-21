@@ -12,10 +12,12 @@ namespace CurrencyConverter
             Currency currency = new Currency();
             currency.SetBaseCurrency("RU", "Российский рубль");
             CalculatorPage._currency = currency;
+            OpenFile._currency = currency;
+            SaveFile._currency = currency;
             Frame.Navigate(typeof(CalculatorPage));          
         }
 
-        private void burgerButton_Click(object sender, RoutedEventArgs e)
+        private void BurgerButton_Click(object sender, RoutedEventArgs e)
         {
             SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
         }

@@ -8,24 +8,29 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#5563C7">
+    <Grid Style ="{StaticResource GridPage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
-            <RowDefinition/>
+            <RowDefinition Height="80"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0">
-            <TextBlock Text="Открыть файл" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock Text="Открыть файл" Style="{StaticResource PageTitleTextBlockStyle}" Margin="10,0,0,0"/>
         </Grid>
         <Grid Grid.Row="1">
+            <TextBlock x:Name="MessageTextBox" Text="Выберите способ открытия файла" Style="{StaticResource WhiteTextBlockStyle}" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        </Grid>
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Файл" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}" Click="ButtonOpenFile_Click">
-                
+            <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}" Click="ButtonOpenFile_Click">
+                <TextBlock Text="Файл" Style="{StaticResource WhiteTextBlockStyle}"/>
             </Button>
-            <Button Content="Ссылка" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="ButtonOpenLink_Click">
+            <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="ButtonOpenLink_Click">
+                <TextBlock Text="Ссылка" Style="{StaticResource WhiteTextBlockStyle}"/>
             </Button>
         </Grid>
     </Grid>

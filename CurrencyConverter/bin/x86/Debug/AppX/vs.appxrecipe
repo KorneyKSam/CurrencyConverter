@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-02-21T15:07:45.133</Modified>
+      <Modified>2021-02-21T19:16:25.644</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\CurrencyConverter.exe">
       <PackagePath>entrypoint\CurrencyConverter.exe</PackagePath>
-      <Modified>2021-02-21T15:07:44.469</Modified>
+      <Modified>2021-02-21T19:16:25.289</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\korne\.nuget\packages\newtonsoft.json\12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
@@ -90,27 +90,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\CurrencyConverter.xr.xml">
       <PackagePath>CurrencyConverter.xr.xml</PackagePath>
-      <Modified>2021-02-21T14:46:03.545</Modified>
+      <Modified>2021-02-21T19:15:16.142</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-02-21T15:07:44.348</Modified>
+      <Modified>2021-02-21T19:16:25.230</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\CalculatorPage.xbf">
       <PackagePath>CalculatorPage.xbf</PackagePath>
-      <Modified>2021-02-21T15:07:44.348</Modified>
+      <Modified>2021-02-21T19:16:25.230</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2021-02-21T15:07:44.348</Modified>
+      <Modified>2021-02-21T19:16:25.230</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\OpenFile.xbf">
       <PackagePath>OpenFile.xbf</PackagePath>
-      <Modified>2021-02-21T15:07:44.348</Modified>
+      <Modified>2021-02-21T19:16:25.230</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\SaveFile.xbf">
       <PackagePath>SaveFile.xbf</PackagePath>
-      <Modified>2021-02-21T15:07:44.348</Modified>
+      <Modified>2021-02-21T19:16:25.230</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -122,7 +122,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GitHub\CurrencyConverter\CurrencyConverter\bin\x86\Debug\Core\CurrencyConverter.exe">
       <PackagePath>CurrencyConverter.exe</PackagePath>
-      <Modified>2021-02-21T15:07:45.124</Modified>
+      <Modified>2021-02-21T19:16:25.641</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

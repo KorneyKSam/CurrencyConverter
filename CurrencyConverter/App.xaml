@@ -5,14 +5,34 @@
     xmlns:local="using:CurrencyConverter">
 
     <Application.Resources>
+        <Style x:Key="GridPage" TargetType="Grid">
+            <Setter Property="Background" Value="#575655"/>
+        </Style>
+        
         <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontSize" Value="45"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="#D1D4EE"/>
+            <Setter Property="Foreground" Value="#0276F2"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
         </Style>
-        
+
+        <Style x:Key="PageTitleTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BurgerMenuText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
         <Style x:Key="ExceptionTextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Red"/>
             <Setter Property="Grid.ColumnSpan" Value="2"/>
@@ -25,13 +45,17 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="White"/>
         </Style>
+        
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontSize" Value="45"/>
+            <Setter Property="Margin" Value="5,5,5,5"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#3B3B3B"/>
         </Style>
+        
         <Style x:Key="ItemIcon" TargetType="TextBlock"> 
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
             <Setter Property="FontSize" Value="30"/>
@@ -41,6 +65,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Width" Value="80"/>
         </Style>
+        
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
             <Setter Property="Margin" Value="10 10 10 10" />
             <Setter Property="FontFamily" Value="Times New Roman"/>
@@ -48,13 +73,14 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Background" Value="#292F65" />
+            <Setter Property="Background" Value="#2B2B2B" />
         </Style>
+        
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Margin" Value="10 10 10 10" />
+            <Setter Property="Margin" Value="20, 20, 20, 20" />
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Background" Value="#292F65" />
+            <Setter Property="Background" Value="#2B2B2B" />
         </Style>
 
     </Application.Resources>

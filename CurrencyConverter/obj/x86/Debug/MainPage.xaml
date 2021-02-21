@@ -39,19 +39,19 @@
                         <ListBoxItem x:ConnectionId='4' Name="ItemOpenFile" Height="70">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE8E5;"/>
-                                <TextBlock Style="{StaticResource WhiteTextBlockStyle}" Text="Открыть файл"/>
+                                <TextBlock Style="{StaticResource BurgerMenuText}" Text="Открыть файл"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem x:ConnectionId='5' Name="ItemSaveFile" Height="70">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE74E;"/>
-                                <TextBlock Style="{StaticResource WhiteTextBlockStyle}" Text="Сохранить файл"/>
+                                <TextBlock Style="{StaticResource BurgerMenuText}" Text="Сохранить файл"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem x:ConnectionId='6' Name="ItemCalculator" Height="70">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource ItemIcon}" Text="&#xE8EF;"/>
-                                <TextBlock Style="{StaticResource WhiteTextBlockStyle}" Text="Калькулятор валют"/>
+                                <TextBlock Style="{StaticResource BurgerMenuText}" Text="Калькулятор валют"/>
                             </StackPanel>
                         </ListBoxItem>
                     </ListBox>

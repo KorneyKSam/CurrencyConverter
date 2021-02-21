@@ -8,23 +8,24 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#5A63C3">
+    <Grid Style ="{StaticResource GridPage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock Text="Сохранить файл" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock Text="Сохранить файл" Style="{StaticResource PageTitleTextBlockStyle}" Margin="10,0,0,0"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:ConnectionId='2' Content="Сохранить как JSON" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}"                             >
-
+            <Button x:ConnectionId='2' Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}"                             >
+                <TextBlock Text="Сохранить как JSON" Style="{StaticResource WhiteTextBlockStyle}"/>
             </Button>
-            <Button Content="Сохранить как таблицу" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}">
+            <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}">
+                <TextBlock Text="Сохранить как таблицу" Style="{StaticResource WhiteTextBlockStyle}"/>
             </Button>
         </Grid>
     </Grid>

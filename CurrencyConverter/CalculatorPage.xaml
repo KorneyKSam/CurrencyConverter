@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#5A63C3">
+    <Grid Style="{StaticResource GridPage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition/>
@@ -20,13 +20,15 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="TitleTextBlock" Style="{StaticResource TitleTextBlockStyle}" Text="Калькулятор" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="TitleTextBlock" Style="{StaticResource PageTitleTextBlockStyle}" Text="Калькулятор" Grid.Column="0" Margin="10,0,0,0"/>
         <TextBox Name="TextBox1" 
+                 Text="0"
                  Grid.Column="0" 
                  Grid.Row="1"
                  Style="{StaticResource TextBoxStyle}"
                  TextChanged="TextBox1_TextChanged"/>
         <TextBox Name="TextBox2"
+                 Text="0"
                  Grid.Column="1" 
                  Grid.Row="1"
                  TextChanged="TextBox2_TextChanged"
@@ -38,16 +40,14 @@
                   Grid.Row="2"
                   ItemsSource="{x:Bind CurrencyList}"
                   SelectionChanged="ComboBox1_SelectionChanged"/>
-
         <ComboBox x:Name="CurrencyCombo2" 
                   Header="Выберите валюту"
                   Style ="{StaticResource ComboBoxStyle}" 
-                  PlaceholderText="*******"
+                  PlaceholderText="*****"
                   Grid.Column="1"
                   Grid.Row="2"
                   ItemsSource="{x:Bind CurrencyList}"
-                  SelectionChanged="ComboBox2_SelectionChanged"
-                  />
+                  SelectionChanged="ComboBox2_SelectionChanged"/>
         <TextBlock x:Name="ExceptionTextBlock" 
                    Style="{StaticResource ExceptionTextBlockStyle}" 
                    Grid.Column="0" 

@@ -11,14 +11,28 @@ namespace CurrencyConverter
     {
         static public Currency _currency;
         private Calculator _calculator;
-        public List<string> CurrencyList { get; private set; }
+        private List<string> CurrencyList { get; set; }
 
         public CalculatorPage()
         {
             this.InitializeComponent();
             _calculator = new Calculator();
             CurrencyList = _currency.GetCurrencyList();
-            //btnChangeValute2.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 90, 99, 195));
+            SetRandomCurrency();
+        }
+
+        private void SetRandomCurrency()
+        {
+            try
+            {
+                Random random = new Random();
+                CurrencyCombo1.SelectedItem = CurrencyList[random.Next(0, CurrencyList.Count - 1)];
+                CurrencyCombo2.SelectedItem = CurrencyList[random.Next(0, CurrencyList.Count - 1)];
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -27,7 +41,6 @@ namespace CurrencyConverter
             string firstCurrency = SelectContentOfBrackets(Convert.ToString(CurrencyCombo1.SelectedValue));
             int nominal = _currency.GetNominal(firstCurrency);
             float rate = _currency.GetRate(firstCurrency);
-            double value = _calculator.CalculateFirstCurrency(nominal, rate);
             TextBox2.Text = Convert.ToString(Math.Round(_calculator.CalculateFirstCurrency(nominal, rate), 6));
             TextBox2.IsHitTestVisible = true;
         }

@@ -21,7 +21,6 @@ namespace CurrencyConverter
             OpenJsonLink(link);
         }
 
-
         public void SetBaseCurrency(string baseCurrency, string nameBaseCurrency)
         {
             BaseCurrency = baseCurrency;
@@ -58,11 +57,18 @@ namespace CurrencyConverter
             return _currencyModel.Valute.GetValueOrDefault(currencyCode).Value;
         }
 
-        public void OpenJsonFile(string directory = "daily_json.js")
+        public void OpenJsonFile(string path = "daily_json.json")
         {
-            if (File.Exists(directory))
-                _currencyModel = JsonConvert.DeserializeObject<CurrencyModel>(File.ReadAllText(directory));
-            else throw new FileJsonNotFound();
+            try
+            {
+                if (File.Exists(path))
+                _currencyModel = JsonConvert.DeserializeObject<CurrencyModel>(File.ReadAllText(path));
+                else throw new FileJsonNotFound();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public void OpenJsonLink(string link)
@@ -74,22 +80,7 @@ namespace CurrencyConverter
         public string SaveToJsonFile(CurrencyModel currencyModel, string path)
         {
             string saveMessage;
-            //try
-            //{
-            //    using (FileStream fs = File.Create(path))
-            //    {
-            //        byte[] info = new UTF8Encoding(true).GetBytes("Текст одинаковый");
-            //        fs.Write(info, 0, info.Length);
-            //    }
-            //}
-            //catch (Exception exception)
-            //{
-            //    return exception.Message;
-            //}
 
-            //FileStream fs = new FileStream(path, FileMode.Create);
-
-            //File.Create(path);
             File.WriteAllText("daily_json.js", JsonConvert.SerializeObject(_currencyModel));
 
             saveMessage = "successfully";
