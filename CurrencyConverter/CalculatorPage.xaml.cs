@@ -1,9 +1,11 @@
 ﻿using CurrencyConverter.CustomExceptions;
+using CurrencyConverter.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,51 +28,70 @@ namespace CurrencyConverter
         public CalculatorPage()
         {
             this.InitializeComponent();
-            _calculator = new Calculator(_currencyModel, "RU");
+            _calculator = new Calculator(_currencyModel);
+            _calculator.SetBaseCurrency("RU", "Рубль");
             CurrencyList = GetCurrencyList();
-            CurrencyList.Add("RU");
-
             //btnChangeValute2.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 90, 99, 195));
         }
 
         private List<string> GetCurrencyList()
         {
-            return _currencyModel.Valute.Keys.ToList();
+            List<string> list = new List<string>();
+            foreach (var item in _currencyModel.Valute.Keys)
+            {
+                list.Add($"{_currencyModel.Valute.GetValueOrDefault(item).Name} ({_currencyModel.Valute.GetValueOrDefault(item).CharCode})");
+            }
+            return list;
         }
 
-        private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TextBox2.Text = _calculator.CalculateFirstCurrency(Convert.ToString(CurrencyCombo1.SelectedValue));
+            TextBox2.IsHitTestVisible = false;
+            double firstValue = TextBox1.Text != String.Empty ? Convert.ToSingle(TextBox1.Text) : 0;
+            double secondValue = TextBox2.Text != String.Empty ? Convert.ToSingle(TextBox2.Text) : 0;
+            var pattern = @"(?<=\().+?(?=\))";
+            string firstCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo1.SelectedValue), pattern));
+            string secondCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo2.SelectedValue), pattern));
+            TextBox2.Text = _calculator.Calculate(firstCurrency, secondCurrency, firstValue, secondValue);
+            TextBox2.IsHitTestVisible = true;
         }
-
-        private void ComboBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TextBox1.Text = _calculator.CalculateSecondCurrency(Convert.ToString(CurrencyCombo2.SelectedValue));
-        }
-
         private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            float firstValue = TextBox1.Text != String.Empty ? Convert.ToSingle(TextBox1.Text) : 0;
-            TextBox2.Text = _calculator.CalculateFirstValue(firstValue);
+            TextBox2.IsHitTestVisible = false;
+            double firstValue = TextBox1.Text != String.Empty ? Convert.ToSingle(TextBox1.Text) : 0;
+            double secondValue = TextBox2.Text != String.Empty ? Convert.ToSingle(TextBox2.Text) : 0;
+            var pattern = @"(?<=\().+?(?=\))";
+            string firstCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo1.SelectedValue), pattern));
+            string secondCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo2.SelectedValue), pattern));
+            TextBox2.Text = _calculator.Calculate(firstCurrency, secondCurrency, firstValue, secondValue);
+            TextBox2.IsHitTestVisible = true;
         }
 
         private void TextBox2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            float secondValue = TextBox2.Text != String.Empty ? Convert.ToSingle(TextBox2.Text) : 0;
-            TextBox1.Text = _calculator.CalculateSecondValue(secondValue);
+            TextBox1.IsHitTestVisible = false;
+            double firstValue = TextBox1.Text != String.Empty ? Convert.ToSingle(TextBox1.Text) : 0;
+            double secondValue = TextBox2.Text != String.Empty ? Convert.ToSingle(TextBox2.Text) : 0;
+            var pattern = @"(?<=\().+?(?=\))";
+            string firstCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo1.SelectedValue), pattern));
+            string secondCurrency = Convert.ToString(Regex.Match(Convert.ToString(CurrencyCombo2.SelectedValue), pattern));
+            TextBox1.Text = _calculator.CalculateLeftTextBox(firstCurrency, secondCurrency, firstValue, secondValue);
+            TextBox1.IsHitTestVisible = true;
         }
 
-        private void UpdateValues()
-        {
-            TextBox1.Text = Convert.ToString(_calculator.FirstValue);
-            TextBox2.Text = Convert.ToString(_calculator.SecondValue);
-            CurrencyCombo1.SelectedValue = Convert.ToString(_calculator.FirstCurrency);
-            CurrencyCombo2.SelectedValue = Convert.ToString(_calculator.SecondCurrency);
-        }
+        //private void ComboBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    TextBox1.IsHitTestVisible = false;
+        //    TextBox1.Text = _calculator.CalculateSecondCurrency(Convert.ToString(CurrencyCombo2.SelectedValue));
+        //    TextBox1.IsHitTestVisible = true;
+        //}
 
-        private void TextBoxes_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
-        {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
-        }
+
+
+        //private void TextBoxes_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        //{
+        //    args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        //    args.Cancel = args.NewText.Any(c => !Char.IsNumber(c)); 
+        //}
     }
 }

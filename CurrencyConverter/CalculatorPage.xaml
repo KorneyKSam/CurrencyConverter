@@ -25,22 +25,23 @@
                  Grid.Column="0" 
                  Grid.Row="1"
                  Style="{StaticResource TextBoxStyle}"
-                 BeforeTextChanging="TextBoxes_BeforeTextChanging"
-                 TextChanged="TextBox1_TextChanged"/>
+                 TextChanged="TextBox1_TextChanged"
+                 />
+        <!--BeforeTextChanging="TextBoxes_BeforeTextChanging"-->
         <TextBox Name="TextBox2"
                  Grid.Column="1" 
                  Grid.Row="1"
-                 Style="{StaticResource TextBoxStyle}" 
-                 BeforeTextChanging="TextBoxes_BeforeTextChanging"
-                 TextChanged="TextBox2_TextChanged"/>
+                 TextChanged="TextBox2_TextChanged"
+                 Style="{StaticResource TextBoxStyle}" />
+        <!--BeforeTextChanging="TextBoxes_BeforeTextChanging"-->
         <ComboBox x:Name="CurrencyCombo1" 
                   Header="Выберите валюту"
                   Style ="{StaticResource ComboBoxStyle}" 
                   PlaceholderText="*******"
                   Grid.Row="2"
                   ItemsSource="{x:Bind CurrencyList}"
-                  SelectionChanged="ComboBox1_SelectionChanged"/>
-        
+                  SelectionChanged="ComboBox_SelectionChanged"/>
+
         <ComboBox x:Name="CurrencyCombo2" 
                   Header="Выберите валюту"
                   Style ="{StaticResource ComboBoxStyle}" 
@@ -48,8 +49,8 @@
                   Grid.Column="1"
                   Grid.Row="2"
                   ItemsSource="{x:Bind CurrencyList}"
-                  SelectionChanged="ComboBox2_SelectionChanged"/>
-
+                  SelectionChanged="ComboBox_SelectionChanged"
+                  />
         <TextBlock x:Name="ExceptionTextBlock" 
                    Style="{StaticResource ExceptionTextBlockStyle}" 
                    Grid.Column="0" 
